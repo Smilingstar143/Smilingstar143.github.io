@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CG PART-A PROGRAMS | Smiling Star</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #10172f, #202044, #172b3e);
+    color: white;
+    font-family: Georgia, serif;
+    padding: 18px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 8px;
+}
+
+.star {
+    font-size: 65px;
+    background: linear-gradient(135deg, #ffcf70, #ff8db7, #8bdcff, #b9f5a5);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.logo {
+    font-size: clamp(27px, 6vw, 43px);
+    font-weight: bold;
+    font-style: italic;
+    margin: 12px 0;
+    background: linear-gradient(90deg, #ffbd75, #ff91c8, #9edbff, #b7f5ad);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.logo span {
+    display: inline-block;
+    opacity: 0;
+    animation: letter 0.16s forwards;
+}
+
+@keyframes letter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tagline {
+    color: #e5d4ff;
+    font-size: clamp(13px, 3.5vw, 18px);
+    font-style: italic;
+    margin-top: 15px;
+    opacity: 0;
+    animation: showTag 0.5s forwards;
+    animation-delay: 1.8s;
+}
+
+@keyframes showTag {
+    to { opacity: 1; }
+}
+
+.heading {
+    text-align: center;
+    font-size: clamp(25px, 5vw, 36px);
+    letter-spacing: 2px;
+    margin: 25px 0;
+    background: linear-gradient(90deg, #ffd27e, #ff9dc9, #9bdfff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.program {
+    max-width: 950px;
+    margin: 22px auto;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.program h2 {
+    color: #ffd18a;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+pre {
+    background: #101522;
+    color: #d9eaff;
+    padding: 16px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre;
+    border: 1px solid #39445e;
+}
+
+.copy-btn {
+    margin-top: 14px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #ffbd75, #ff91c8, #9edbff);
+    color: #172039;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    margin: 45px 0 20px;
+    padding: 25px 10px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.thanks {
+    color: #b9e8ff;
+    font-size: 19px;
+    font-style: italic;
+    margin-bottom: 18px;
+}
+
+.created {
+    color: #f7c8a0;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.footer-name {
+    font-size: 27px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 8px;
+    background: linear-gradient(90deg, #ffbd75, #ff91c8, #9edbff, #b7f5ad);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="star">★</div>
+    <div class="logo" id="logo"></div>
+    <div class="tagline">
+        • 𝑲𝒆𝒆𝒑 𝑺𝒎𝒊𝒍𝒊𝒏𝒈&nbsp;&nbsp; • 𝑲𝒆𝒆𝒑 𝑺𝒉𝒊𝒏𝒊𝒏𝒈
+    </div>
+</header>
+
+<h1 class="heading">CG PART-A PROGRAMS</h1>
+
+<section class="program">
+<h2>1. Program to draw basic graphics primitives</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+    int gd = DETECT, gm;
+
+    initgraph(&amp;gd, &amp;gm, "C:\\Turboc3\\BGI");
+
+    setcolor(GREEN);
+    line(50, 50, 250, 50);
+
+    setcolor(RED);
+    rectangle(50, 100, 250, 220);
+
+    setcolor(BLUE);
+    circle(400, 160, 60);
+
+    setcolor(WHITE);
+    ellipse(600, 160, 0, 360, 90, 50);
+
+    outtextxy(50, 260,
+    (char*)"Line, Rectangle, Circle, Ellipse");
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>2. Program to implement (DDA) Line Drawing Algorithm</h2>
+<pre><code>#include&lt;graphics.h&gt;
+#include&lt;conio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;iostream.h&gt;
+
+void dda(float x1,float y1,float x2,float y2)
+{
+    float dx,dy,steps;
+    float xinc,yinc;
+    float x,y;
+    int i;
+
+    dx=x2-x1;
+    dy=y2-y1;
+
+    if((fabs(dx)&gt;fabs(dy)))
+        steps=fabs(dx);
+    else
+        steps=fabs(dy);
+
+    xinc=dx/steps;
+    yinc=dy/steps;
+
+    x=x1;
+    y=y1;
+
+    putpixel((int)(x+0.5),(int)(y+0.5),WHITE);
+
+    for(i=0; i&lt;steps; i++)
+    {
+        x=x+xinc;
+        y=y+yinc;
+        putpixel((int)(x+0.5),(int)(y+0.5),WHITE);
+    }
+}
+
+int main()
+{
+    int gd=DETECT,gm;
+    float x1,y1,x2,y2;
+
+    initgraph(&amp;gd,&amp;gm,"C:\\turboc3\\bgi");
+
+    cout&lt;&lt;"Enter x1,y1:";
+    cin&gt;&gt;x1&gt;&gt;y1;
+
+    cout&lt;&lt;"Enter x2,y2:";
+    cin&gt;&gt;x2&gt;&gt;y2;
+
+    dda(x1,y1,x2,y2);
+
+    outtextxy(0,200,(char*)"DDA line drawing algorithm");
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>3. Program to implement Bresenham's Line Drawing Algorithm</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;math.h&gt;
+#include &lt;iostream.h&gt;
+
+void bresenham(int x1, int y1, int x2, int y2)
+{
+    int dx, dy, sx, sy, x, y, p;
+
+    dx = abs(x2 - x1);
+    dy = abs(y2 - y1);
+
+    sx = (x2 &gt; x1) ? 1 : -1;
+    sy = (y2 &gt; y1) ? 1 : -1;
+
+    x = x1;
+    y = y1;
+
+    if (dx &gt; dy)
+    {
+        p = 2 * dy - dx;
+        for (int i = 0; i &lt;= dx; i++)
+        {
+            putpixel(x, y, WHITE);
+            x += sx;
+            if (p &gt;= 0)
+            {
+                y += sy;
+                p -= 2 * dx;
+            }
+            p += 2 * dy;
+        }
+    }
+    else
+    {
+        p = 2 * dx - dy;
+        for (int i = 0; i &lt;= dy; i++)
+        {
+            putpixel(x, y, WHITE);
+            y += sy;
+            if (p &gt;= 0)
+            {
+                x += sx;
+                p -= 2 * dy;
+            }
+            p += 2 * dx;
+        }
+    }
+}
+
+void main()
+{
+    int gd = DETECT, gm;
+    int x1, y1, x2, y2;
+
+    cout&lt;&lt;"Enter starting point (x1 y1)";
+    cin&gt;&gt;x1&gt;&gt;y1;
+    cout&lt;&lt;"Enter ending point (x2 y2)";
+    cin&gt;&gt;x2&gt;&gt;y2;
+
+    initgraph(&amp;gd, &amp;gm, "C:\\Turboc3\\BGI");
+
+    bresenham(x1, y1, x2, y2);
+
+    getch();
+    closegraph();
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>4. Program to draw a circle using Bresenham's Circle Algorithm</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;conio.h&gt;
+
+void drawCircle(int xc, int yc, int x, int y)
+{
+    putpixel(xc + x, yc + y, WHITE);
+    putpixel(xc - x, yc + y, WHITE);
+    putpixel(xc + x, yc - y, WHITE);
+    putpixel(xc - x, yc - y, WHITE);
+    putpixel(xc + y, yc + x, WHITE);
+    putpixel(xc - y, yc + x, WHITE);
+    putpixel(xc + y, yc - x, WHITE);
+    putpixel(xc - y, yc - x, WHITE);
+}
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&amp;gd, &amp;gm, "C:\\TURBOC3\\BGI");
+
+    int xc, yc, r;
+
+    cout &lt;&lt; "Enter center (xc yc): ";
+    cin &gt;&gt; xc &gt;&gt; yc;
+
+    cout &lt;&lt; "Enter radius: ";
+    cin &gt;&gt; r;
+
+    int x = 0;
+    int y = r;
+    int p = 3 - 2 * r;
+
+    while (x &lt;= y)
+    {
+        drawCircle(xc, yc, x, y);
+
+        if (p &lt; 0)
+            p = p + 4 * x + 6;
+        else
+        {
+            p = p + 4 * (x - y) + 10;
+            y--;
+        }
+
+        x++;
+    }
+
+    outtextxy(50, 50, "Bresenham's Circle Drawing Algorithm");
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>5. Program to perform 2D Transformations</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;math.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&amp;gd, &amp;gm, "C:\\TURBOC3\\BGI");
+
+    int x1, y1, x2, y2, x3, y3;
+    int ch;
+
+    cout &lt;&lt; "Enter Triangle Coordinates:\n";
+
+    cout &lt;&lt; "x1 y1: ";
+    cin &gt;&gt; x1 &gt;&gt; y1;
+
+    cout &lt;&lt; "x2 y2: ";
+    cin &gt;&gt; x2 &gt;&gt; y2;
+
+    cout &lt;&lt; "x3 y3: ";
+    cin &gt;&gt; x3 &gt;&gt; y3;
+
+    // Draw Original Triangle
+    line(x1, y1, x2, y2);
+    line(x2, y2, x3, y3);
+    line(x3, y3, x1, y1);
+
+    cout &lt;&lt; "\n2D Transformations";
+    cout &lt;&lt; "\n1. Translation";
+    cout &lt;&lt; "\n2. Scaling";
+    cout &lt;&lt; "\n3. Rotation";
+    cout &lt;&lt; "\nEnter your choice: ";
+    cin &gt;&gt; ch;
+
+    switch(ch)
+    {
+        case 1:
+        {
+            int tx, ty;
+
+            cout &lt;&lt; "Enter Translation Factors (tx ty): ";
+            cin &gt;&gt; tx &gt;&gt; ty;
+
+            x1 += tx; y1 += ty;
+            x2 += tx; y2 += ty;
+            x3 += tx; y3 += ty;
+
+            break;
+        }
+
+        case 2:
+        {
+            float sx, sy;
+
+            cout &lt;&lt; "Enter Scaling Factors (sx sy): ";
+            cin &gt;&gt; sx &gt;&gt; sy;
+
+            x1 = x1 * sx;
+            y1 = y1 * sy;
+            x2 = x2 * sx;
+            y2 = y2 * sy;
+            x3 = x3 * sx;
+            y3 = y3 * sy;
+
+            break;
+        }
+
+        case 3:
+        {
+            float angle;
+
+            cout &lt;&lt; "Enter Rotation Angle (degrees): ";
+            cin &gt;&gt; angle;
+
+            float rad = angle * 3.14159 / 180;
+
+            int tx1 = x1*cos(rad) - y1*sin(rad);
+            int ty1 = x1*sin(rad) + y1*cos(rad);
+
+            int tx2 = x2*cos(rad) - y2*sin(rad);
+            int ty2 = x2*sin(rad) + y2*cos(rad);
+
+            int tx3 = x3*cos(rad) - y3*sin(rad);
+            int ty3 = x3*sin(rad) + y3*cos(rad);
+
+            x1 = tx1; y1 = ty1;
+            x2 = tx2; y2 = ty2;
+            x3 = tx3; y3 = ty3;
+
+            break;
+        }
+
+        default:
+            cout &lt;&lt; "Invalid Choice!";
+    }
+
+    // Draw Transformed Triangle
+    setcolor(RED);
+
+    line(x1, y1, x2, y2);
+    line(x2, y2, x3, y3);
+    line(x3, y3, x1, y1);
+
+    outtextxy(150, 150, "2D Transformation");
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>6. Program for Line Clipping using Cohen-Sutherland Algorithm</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;conio.h&gt;
+
+const int INSIDE = 0;
+const int LEFT = 1;
+const int RIGHT = 2;
+const int BOTTOM = 4;
+const int TOP = 8;
+
+int xmin = 100, ymin = 100, xmax = 300, ymax = 300;
+
+int computeCode(double x, double y)
+{
+    int code = INSIDE;
+
+    if (x &lt; xmin)
+        code |= LEFT;
+    else if (x &gt; xmax)
+        code |= RIGHT;
+
+    if (y &lt; ymin)
+        code |= BOTTOM;
+    else if (y &gt; ymax)
+        code |= TOP;
+
+    return code;
+}
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&amp;gd, &amp;gm, "C:\\TURBOC3\\BGI");
+
+    double x1, y1, x2, y2;
+
+    cout &lt;&lt; "Enter x1 y1: ";
+    cin &gt;&gt; x1 &gt;&gt; y1;
+
+    cout &lt;&lt; "Enter x2 y2: ";
+    cin &gt;&gt; x2 &gt;&gt; y2;
+
+    rectangle(xmin, ymin, xmax, ymax);
+
+    line(x1, y1, x2, y2);
+
+    int code1 = computeCode(x1, y1);
+    int code2 = computeCode(x2, y2);
+
+    int accept = 0;
+
+    while (1)
+    {
+        if ((code1 == 0) &amp;&amp; (code2 == 0))
+        {
+            accept = 1;
+            break;
+        }
+        else if (code1 &amp; code2)
+        {
+            break;
+        }
+        else
+        {
+            int codeOut;
+            double x, y;
+
+            if (code1 != 0)
+                codeOut = code1;
+            else
+                codeOut = code2;
+
+            if (codeOut &amp; TOP)
+            {
+                x = x1 + (x2 - x1) * (ymax - y1) / (y2 - y1);
+                y = ymax;
+            }
+            else if (codeOut &amp; BOTTOM)
+            {
+                x = x1 + (x2 - x1) * (ymin - y1) / (y2 - y1);
+                y = ymin;
+            }
+            else if (codeOut &amp; RIGHT)
+            {
+                y = y1 + (y2 - y1) * (xmax - x1) / (x2 - x1);
+                x = xmax;
+            }
+            else
+            {
+                y = y1 + (y2 - y1) * (xmin - x1) / (x2 - x1);
+                x = xmin;
+            }
+
+            if (codeOut == code1)
+            {
+                x1 = x;
+                y1 = y;
+                code1 = computeCode(x1, y1);
+            }
+            else
+            {
+                x2 = x;
+                y2 = y;
+                code2 = computeCode(x2, y2);
+            }
+        }
+    }
+
+    if (accept)
+    {
+        setcolor(RED);
+        line(x1, y1, x2, y2);
+        outtextxy(50, 50, "Clipped Line");
+    }
+    else
+    {
+        outtextxy(10, 10, "Line Rejected");
+    }
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>7. Program for Polygon Clipping</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&amp;gd, &amp;gm, "C:\\TURBOC3\\BGI");
+
+    int xmin = 150, ymin = 150;
+    int xmax = 350, ymax = 300;
+
+    rectangle(xmin, ymin, xmax, ymax);
+
+    int poly[] = {
+        100,100,
+        250,100,
+        400,200,
+        300,350,
+        150,300,
+        100,100
+    };
+
+    setcolor(WHITE);
+    drawpoly(6, poly);
+
+    outtextxy(50, 50, "Original Polygon");
+
+    int clipped[] = {
+        150,150,
+        250,150,
+        350,200,
+        300,300,
+        150,300,
+        150,150
+    };
+
+    setcolor(RED);
+    drawpoly(6, clipped);
+
+    outtextxy(60, 60, "Clipped Polygon");
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<section class="program">
+<h2>8. Program to perform 3D Transformations</h2>
+<pre><code>#include &lt;graphics.h&gt;
+#include &lt;iostream.h&gt;
+#include &lt;math.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&amp;gd, &amp;gm, "C:\\TURBOC3\\BGI");
+
+    int x[8] = {100, 200, 200, 100, 150, 250, 250, 150};
+    int y[8] = {100, 100, 200, 200, 50, 50, 150, 150};
+    int z[8] = {0, 0, 0, 0, 100, 100, 100, 100};
+
+    setcolor(WHITE);
+
+    // Front face
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[3], y[3]);
+    line(x[3], y[3], x[0], y[0]);
+
+    // Back face
+    line(x[4], y[4], x[5], y[5]);
+    line(x[5], y[5], x[6], y[6]);
+    line(x[6], y[6], x[7], y[7]);
+    line(x[7], y[7], x[4], y[4]);
+
+    // Connecting edges
+    line(x[0], y[0], x[4], y[4]);
+    line(x[1], y[1], x[5], y[5]);
+    line(x[2], y[2], x[6], y[6]);
+    line(x[3], y[3], x[7], y[7]);
+
+    int choice;
+
+    cout &lt;&lt; "\n3D Transformations";
+    cout &lt;&lt; "\n1. Translation";
+    cout &lt;&lt; "\n2. Scaling";
+    cout &lt;&lt; "\n3. Rotation (Z-axis)";
+    cout &lt;&lt; "\nEnter your choice: ";
+    cin &gt;&gt; choice;
+
+    switch(choice)
+    {
+        case 1:
+        {
+            int tx, ty, tz;
+
+            cout &lt;&lt; "Enter Translation Factors (tx ty tz): ";
+            cin &gt;&gt; tx &gt;&gt; ty &gt;&gt; tz;
+
+            for(int i = 0; i &lt; 8; i++)
+            {
+                x[i] += tx;
+                y[i] += ty;
+                z[i] += tz;
+            }
+
+            break;
+        }
+
+        case 2:
+        {
+            float sx, sy, sz;
+
+            cout &lt;&lt; "Enter Scaling Factors (sx sy sz): ";
+            cin &gt;&gt; sx &gt;&gt; sy &gt;&gt; sz;
+
+            for(int i = 0; i &lt; 8; i++)
+            {
+                x[i] *= sx;
+                y[i] *= sy;
+                z[i] *= sz;
+            }
+
+            break;
+        }
+
+        case 3:
+        {
+            float angle;
+
+            cout &lt;&lt; "Enter Rotation Angle: ";
+            cin &gt;&gt; angle;
+
+            float rad = angle * 3.14159 / 180;
+
+            for(int i = 0; i &lt; 8; i++)
+            {
+                int xt = x[i];
+                int yt = y[i];
+
+                x[i] = xt * cos(rad) - yt * sin(rad);
+                y[i] = xt * sin(rad) + yt * cos(rad);
+            }
+
+            break;
+        }
+
+        default:
+            cout &lt;&lt; "Invalid Choice!";
+            getch();
+            closegraph();
+            return 0;
+    }
+
+    setcolor(RED);
+
+    // Front face
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[3], y[3]);
+    line(x[3], y[3], x[0], y[0]);
+
+    // Back face
+    line(x[4], y[4], x[5], y[5]);
+    line(x[5], y[5], x[6], y[6]);
+    line(x[6], y[6], x[7], y[7]);
+    line(x[7], y[7], x[4], y[4]);
+
+    // Connecting edges
+    line(x[0], y[0], x[4], y[4]);
+    line(x[1], y[1], x[5], y[5]);
+    line(x[2], y[2], x[6], y[6]);
+    line(x[3], y[3], x[7], y[7]);
+
+    outtextxy(10, 10, "3D Transformation");
+
+    getch();
+    closegraph();
+
+    return 0;
+}</code></pre>
+<button class="copy-btn" onclick="copyCode(this)">Copy Program</button>
+</section>
+
+<footer>
+    <div class="thanks">Thanks For Visiting My Website</div>
+    <div class="created">CREATED BY</div>
+    <div class="footer-name">Smiling Star</div>
+</footer>
+
+<script>
+const name = "Smiling Star";
+const logo = document.getElementById("logo");
+
+name.split("").forEach((letter, index) => {
+    const span = document.createElement("span");
+    span.textContent = letter === " " ? "\u00A0" : letter;
+    span.style.animationDelay = (index * 0.12) + "s";
+    logo.appendChild(span);
+});
+
+function copyCode(button) {
+    const code = button.previousElementSibling.innerText;
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).then(() => {
+            button.textContent = "Copied!";
+            setTimeout(() => {
+                button.textContent = "Copy Program";
+            }, 1500);
+        }).catch(() => fallbackCopy(code, button));
+    } else {
+        fallbackCopy(code, button);
+    }
+}
+
+function fallbackCopy(code, button) {
+    const area = document.createElement("textarea");
+    area.value = code;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    document.body.removeChild(area);
+
+    button.textContent = "Copied!";
+    setTimeout(() => {
+        button.textContent = "Copy Program";
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
