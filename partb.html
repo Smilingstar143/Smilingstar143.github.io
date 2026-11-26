@@ -7,91 +7,124 @@
 <title>CG PART-B Lab Programs | Smiling Star</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    font-family: Georgia, serif;
-    background: linear-gradient(135deg, #fff3df, #ffe4ca, #e8d9ff);
-    color: #333;
+body{
+    margin:0;
+    padding:20px;
+    font-family:Georgia,serif;
+    background:linear-gradient(135deg,#fff3df,#ffe4ca,#e8d9ff);
+    color:#333;
 }
 
-header {
-    text-align: center;
-    padding: 25px 10px;
+/* HEADER */
+header{
+    text-align:center;
+    padding:25px 10px;
 }
 
-.logo {
-    font-size: 38px;
-    font-weight: bold;
-    color: #7b3fa1;
-    animation: blink 2s infinite;
+.star-symbol{
+    font-size:55px;
+    font-weight:900;
+    color:#000000;
+    display:block;
+    animation:slowBlink 3s ease-in-out infinite;
+    text-shadow:0 0 10px rgba(0,0,0,.25);
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.45; }
+.logo{
+    font-size:43px;
+    font-weight:900;
+    color:#000000;
+    letter-spacing:1px;
+    text-shadow:1px 2px 3px rgba(0,0,0,.2);
 }
 
-header p {
-    color: #77518c;
+header p{
+    color:#77518c;
+    font-size:16px;
 }
 
-h1 {
-    color: #713b91;
-    text-align: center;
+h1{
+    color:#713b91;
+    text-align:center;
 }
 
-.program-card {
-    max-width: 950px;
-    margin: 22px auto;
-    padding: 22px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 16px;
-    box-shadow: 0 5px 18px rgba(80,40,100,0.15);
-    border-left: 6px solid #9b59b6;
+/* SLOW BLINK ANIMATION */
+@keyframes slowBlink{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+    50%{
+        opacity:.35;
+        transform:scale(1.06);
+    }
 }
 
-.program-card h2 {
-    color: #713b91;
-    border-bottom: 2px solid #ead8f5;
-    padding-bottom: 10px;
+/* PROGRAM CARDS */
+.program-card{
+    max-width:950px;
+    margin:22px auto;
+    padding:22px;
+    background:rgba(255,255,255,.9);
+    border-radius:16px;
+    box-shadow:0 5px 18px rgba(80,40,100,.15);
+    border-left:6px solid #9b59b6;
 }
 
-.program-card h3 {
-    color: #8e44ad;
+.program-card h2{
+    color:#713b91;
+    border-bottom:2px solid #ead8f5;
+    padding-bottom:10px;
 }
 
-li {
-    margin: 9px 0;
-    line-height: 1.5;
+.program-card h3{
+    color:#8e44ad;
 }
 
-footer {
-    text-align: center;
-    margin: 35px auto 10px;
-    padding: 18px;
-    max-width: 950px;
-    background: #713b91;
-    color: white;
-    border-radius: 12px;
-    animation: blink 3s infinite;
+li{
+    margin:9px 0;
+    line-height:1.5;
 }
 
-@media(max-width:600px) {
-    body {
-        padding: 10px;
+/* FOOTER */
+footer{
+    text-align:center;
+    margin:40px auto 15px;
+    padding:25px 15px;
+    max-width:950px;
+    background:#713b91;
+    color:white;
+    border-radius:15px;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:1px;
+    box-shadow:0 5px 18px rgba(80,40,100,.25);
+    animation:slowBlink 3.5s ease-in-out infinite;
+}
+
+@media(max-width:600px){
+    body{
+        padding:10px;
     }
 
-    .program-card {
-        padding: 16px;
+    .program-card{
+        padding:16px;
     }
 
-    .logo {
-        font-size: 30px;
+    .logo{
+        font-size:34px;
+    }
+
+    .star-symbol{
+        font-size:48px;
+    }
+
+    footer{
+        font-size:25px;
     }
 }
 </style>
@@ -100,12 +133,12 @@ footer {
 <body>
 
 <header>
-    <div class="logo">★ Smiling Star ★</div>
+    <span class="star-symbol">★</span>
+    <div class="logo">Smiling Star</div>
     <p>Computer Graphics • Part-B Programs</p>
     <h1>CG PART-B LAB PROGRAMS</h1>
 </header>
 
-<!-- PROGRAM 1 -->
 <div class="program-card">
 <h2>1) Create and Edit Images Using GIMP</h2>
 <h3>Steps:</h3>
@@ -123,7 +156,6 @@ footer {
 </ol>
 </div>
 
-<!-- PROGRAM 2 -->
 <div class="program-card">
 <h2>2) Image Enhancement Using GIMP</h2>
 <h3>Steps:</h3>
@@ -140,7 +172,6 @@ footer {
 </ol>
 </div>
 
-<!-- PROGRAM 3 -->
 <div class="program-card">
 <h2>3) Create Poster/Banner Using GIMP</h2>
 <h3>Steps:</h3>
@@ -158,7 +189,6 @@ footer {
 </ol>
 </div>
 
-<!-- PROGRAM 5 -->
 <div class="program-card">
 <h2>5) Perform Audio Operations Using Audacity</h2>
 <h3>Steps:</h3>
@@ -177,27 +207,52 @@ footer {
 </ol>
 </div>
 
-<!-- PROGRAM 6 -->
 <div class="program-card">
-<h2>6) Create and Edit Video Using OpenShot</h2>
-<h3>Steps:</h3>
+<h2>6) Create a Short Audio Clip with Background Music and Noise-Free Narration</h2>
+
+<h3>1. Prepare Project</h3>
 <ol>
-<li>Open OpenShot Video Editor.</li>
-<li>Click File → Import Files and add pictures.</li>
-<li>Drag the pictures onto Track 1 in the timeline.</li>
-<li>Adjust each picture to about 3–4 seconds.</li>
-<li>Add text using Title.</li>
-<li>Add a Fade transition between pictures.</li>
-<li>Import an MP3 file for background music.</li>
-<li>Drag the music file to Track 2.</li>
-<li>Reduce the volume if necessary.</li>
-<li>Preview the video using the Play button.</li>
-<li>Click Export Project → Export Video.</li>
-<li>Select MP4 and click Export Video.</li>
+<li>Open Audacity.</li>
+<li>Connect microphone and select Mono.</li>
+<li>Import background music.</li>
+</ol>
+
+<h3>2. Record Narration</h3>
+<ol>
+<li>Click below the music track.</li>
+<li>Press Record and speak.</li>
+<li>Press Stop.</li>
+</ol>
+
+<h3>3. Remove Noise</h3>
+<ol>
+<li>Select 3 seconds of silence.</li>
+<li>Click Noise Reduction → Get Noise Profile.</li>
+<li>Select full narration and click OK.</li>
+</ol>
+
+<h3>4. Trim and Align</h3>
+<ol>
+<li>Delete unwanted parts.</li>
+<li>Adjust voice after music intro.</li>
+<li>Remove extra music.</li>
+</ol>
+
+<h3>5. Balance Sound</h3>
+<ol>
+<li>Reduce music volume.</li>
+<li>Check both tracks.</li>
+<li>Apply Fade Out.</li>
+</ol>
+
+<h3>6. Save and Export</h3>
+<ol>
+<li>Mix all tracks.</li>
+<li>Save the project.</li>
+<li>Export as MP3 or WAV.</li>
 </ol>
 </div>
 
-<!-- PROGRAM 7 -->
 <div class="program-card">
 <h2>7) Create and Edit a Video Using OpenShot</h2>
 <h3>Steps:</h3>
@@ -208,18 +263,18 @@ footer {
 <li>Adjust each picture to about 3–4 seconds.</li>
 <li>Add text using Title.</li>
 <li>Add transitions between pictures:
-    <ul>
-        <li>Open Transitions.</li>
-        <li>Choose a simple transition such as Fade.</li>
-        <li>Drag it between two clips.</li>
-    </ul>
+<ul>
+<li>Open Transitions.</li>
+<li>Choose a simple transition such as Fade.</li>
+<li>Drag it between two clips.</li>
+</ul>
 </li>
 <li>Add background music:
-    <ul>
-        <li>Import an MP3 file.</li>
-        <li>Drag it to Track 2.</li>
-        <li>Reduce the volume if necessary.</li>
-    </ul>
+<ul>
+<li>Import an MP3 file.</li>
+<li>Drag it to Track 2.</li>
+<li>Reduce the volume if necessary.</li>
+</ul>
 </li>
 <li>Preview the video using the Play button.</li>
 <li>Click Export Project → Export Video.</li>
@@ -227,7 +282,6 @@ footer {
 </ol>
 </div>
 
-<!-- PROGRAM 8 -->
 <div class="program-card">
 <h2>8) Create Short Video Presentation/Advertisement Using OpenShot</h2>
 <h3>Steps:</h3>
@@ -248,7 +302,7 @@ footer {
 </div>
 
 <footer>
-    ★ Don't Cheating 😅 ★
+★ Don't Cheating 😅 ★
 </footer>
 
 </body>
